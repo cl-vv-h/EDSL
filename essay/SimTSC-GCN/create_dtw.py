@@ -1,3 +1,4 @@
+from errno import EDEADLOCK
 import os
 import argparse
 
@@ -5,7 +6,8 @@ import numpy as np
 
 from src.utils import read_X
 
-import dtw
+from dtw import dtw
+manhattan_distance = lambda x, y: np.abs(x - y)
 
 dataset_dir = './datasets/UCRArchive_2018'
 output_dir = './tmp'
@@ -24,8 +26,10 @@ def get_dtw(X):
         for j in range(len(X)):
             data = X[i]
             query = X[j]
-            distances[i][j] = dtw.query(data, query, r=min(len(data)-1, len(query)-1, 100))['value']
+            #distances[i][j] = dtw.query(data, query, r=min(len(data)-1, len(query)-1, 100))['value']
+            distances[i][j], cost_matrix, acc_cost_matrix, path = dtw(data, query, dist=manhattan_distance)
     return distances
+
 
 if __name__ == "__main__":
     # Get the arguments
