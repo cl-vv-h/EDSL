@@ -15,7 +15,7 @@ class ResNetTrainer:
         if not os.path.exists(self.tmp_dir):
             os.makedirs(self.tmp_dir)
 
-    def fit(self, model, X_train, y_train, epochs=500, batch_size=128, eval_batch_size=128):
+    def fit(self, model, X_train, y_train, epochs=300, batch_size=128, eval_batch_size=128):
         file_path = os.path.join(self.tmp_dir, str(uuid.uuid4()))
 
         train_dataset = Dataset(X_train, y_train)

@@ -3,6 +3,8 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 
+dataset_name = 'Car'
+
 def read_dataset_from_npy(path):
     """ Read dataset from .npy file
     """
@@ -116,6 +118,22 @@ def read_X(ucr_root_dir, dataset_name):
     X = np.concatenate((X_train, X_test), axis=0)
 
     return X
+
+def read_Y(ucr_root_dir, dataset_name):
+    dataset_dir = os.path.join(ucr_root_dir, dataset_name)
+    df_train = pd.read_csv(os.path.join(dataset_dir, dataset_name+'_TRAIN.tsv'), sep='\t', header=None)
+    df_test = pd.read_csv(os.path.join(dataset_dir, dataset_name+'_TEST.tsv'), sep='\t', header=None)
+
+    Y_train = df_train[[0]]
+    Y_test = df_test[[0]]
+
+    Y_train = Y_train.values
+    Y_test = Y_test.values
+
+    Y = np.concatenate((Y_train, Y_test), axis=0)
+    Y = Y.reshape(-1)
+
+    return Y
 
 class Logger:
     def __init__(self, f):

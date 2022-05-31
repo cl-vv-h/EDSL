@@ -6,6 +6,7 @@ import torch
 
 from src.utils import read_dataset_from_npy, Logger
 from src.simtsc.model import SimTSC, SimTSCTrainer
+from src.utils import dataset_name
 
 data_dir = './tmp'
 log_dir = './logs'
@@ -27,9 +28,10 @@ def train(X, y, train_idx, test_idx, distances, device, logger, K, alpha):
     return acc
 
 
+
 def argsparser():
     parser = argparse.ArgumentParser("SimTSC")
-    parser.add_argument('--dataset', help='Dataset name', default='Coffee')
+    parser.add_argument('--dataset', help='Dataset name', default=dataset_name)
     parser.add_argument('--seed', help='Random seed', type=int, default=0)
     parser.add_argument('--gpu', type=str, default='0')
     parser.add_argument('--shot', help='shot', type=int, default=1)
@@ -42,7 +44,7 @@ if __name__ == "__main__":
     # Get the arguments
     parser = argsparser()
     args = parser.parse_args()
-
+    A = torch.tensor([1,2,3]).cuda()
     # Setup the gpu
     os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu
     if torch.cuda.is_available():
@@ -81,3 +83,6 @@ if __name__ == "__main__":
 
         logger.log('--> {} Test Accuracy: {:5.4f}'.format(args.dataset, acc))
         logger.log(str(acc))
+
+#car 0.375
+#car c 0.5

@@ -4,7 +4,7 @@ import argparse
 import numpy as np
 import torch
 
-from src.utils import read_dataset_from_npy, Logger
+from src.utils import read_dataset_from_npy, Logger, dataset_name
 from src.resnet.model import ResNet, ResNetTrainer
 
 data_dir = './tmp'
@@ -28,7 +28,7 @@ def train(X_train, y_train, X_test, y_test, device, logger):
 
 def argsparser():
     parser = argparse.ArgumentParser("Active Timeseries classification")
-    parser.add_argument('--dataset', help='Dataset name', default='Coffee')
+    parser.add_argument('--dataset', help='Dataset name', default=dataset_name)
     parser.add_argument('--seed', help='Random seed', type=int, default=0)
     parser.add_argument('--gpu', type=str, default='0')
     parser.add_argument('--shot', help='shot', type=int, default=1)
@@ -71,3 +71,4 @@ if __name__ == "__main__":
         
         logger.log('--> {} Test Accuracy: {:5.4f}'.format(args.dataset, acc))
         logger.log(str(acc))
+#car 0.3333

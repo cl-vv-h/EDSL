@@ -3,6 +3,7 @@ import argparse
 
 import numpy as np
 
+from src.utils import dataset_name
 from src.utils import read_dataset, read_multivariate_dataset
 
 dataset_dir = './datasets/UCRArchive_2018'
@@ -13,7 +14,7 @@ multivariate_datasets = ['CharacterTrajectories', 'ECG', 'KickvsPunch', 'NetFlow
 
 def argsparser():
     parser = argparse.ArgumentParser("SimTSC data creator")
-    parser.add_argument('--dataset', help='Dataset name', default='Coffee')
+    parser.add_argument('--dataset', help='Dataset name', default=dataset_name)
     parser.add_argument('--seed', help='Random seed', type=int, default=0)
     parser.add_argument('--shot', help='How many labeled time-series per class', type=int, default=1)
 

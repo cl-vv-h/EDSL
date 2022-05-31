@@ -20,7 +20,7 @@ class SimTSCTrainer:
         if not os.path.exists(self.tmp_dir):
             os.makedirs(self.tmp_dir)
 
-    def fit(self, model, X, y, train_idx, distances, K, alpha, test_idx=None, report_test=False, batch_size=128, epochs=500):
+    def fit(self, model, X, y, train_idx, distances, K, alpha, test_idx=None, report_test=False, batch_size=128, epochs=300):
         self.K = K
         self.alpha = alpha
 
@@ -55,7 +55,7 @@ class SimTSCTrainer:
             for sampled_train_idx in train_loader:
                 sampled_other_idx = np.random.choice(other_idx, other_batch_size, replace=False)
                 idx = np.concatenate((sampled_train_idx, sampled_other_idx))
-                _X, _y, _adj = self.X[idx].to(self.device), self.y[sampled_train_idx].to(self.device), self.adj[idx][:,idx]
+                _X, _y, _adj = self.X[idx].to(self.device), self.y[sampled_train_idx.type(torch.long)].to(self.device), self.adj[idx][:,idx]
                 outputs = model(_X, _adj, K, alpha)
                 loss = F.nll_loss(outputs[:len(sampled_train_idx)], _y)
 

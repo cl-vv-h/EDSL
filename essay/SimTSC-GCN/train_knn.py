@@ -3,7 +3,7 @@ import argparse
 
 import numpy as np
 
-from src.utils import read_dataset_from_npy, Logger
+from src.utils import read_dataset_from_npy, Logger, dataset_name
 
 data_dir = './tmp'
 log_dir = './logs'
@@ -28,7 +28,7 @@ def knn(X, y, train_idx, test_idx, distances, logger):
 
 def argsparser():
     parser = argparse.ArgumentParser("KNN")
-    parser.add_argument('--dataset', help='Dataset name', default='Coffee')
+    parser.add_argument('--dataset', help='Dataset name', default=dataset_name)
     parser.add_argument('--shot', help='shot', type=int, default=1)
 
     return parser
@@ -61,3 +61,4 @@ if __name__ == "__main__":
         acc = knn(X, y, train_idx, test_idx, distances, logger)
 
         logger.log(str(acc))
+#Car
