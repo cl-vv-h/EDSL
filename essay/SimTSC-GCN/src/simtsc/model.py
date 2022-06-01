@@ -20,7 +20,7 @@ class SimTSCTrainer:
         if not os.path.exists(self.tmp_dir):
             os.makedirs(self.tmp_dir)
 
-    def fit(self, model, X, y, train_idx, distances, K, alpha, test_idx=None, report_test=False, batch_size=128, epochs=300):
+    def fit(self, model, X, y, train_idx, distances, K, alpha, test_idx=None, report_test=False, batch_size=128, epochs=150):
         self.K = K
         self.alpha = alpha
 
