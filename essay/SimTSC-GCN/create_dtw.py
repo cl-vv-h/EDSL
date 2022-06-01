@@ -73,6 +73,6 @@ if __name__ == "__main__":
     X = read_X(dataset_dir, args.dataset)
     Y = read_Y(dataset_dir, args.dataset)
 
-    #dtw_arr = get_dtw_C(X,Y)
-    dtw_arr = get_dtw(X)
+    dtw_arr = get_dtw_C(X,Y)
+    #dtw_arr = get_dtw(X)
     np.save(os.path.join(result_dir, args.dataset), dtw_arr)

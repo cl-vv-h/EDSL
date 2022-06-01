@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 
-dataset_name = 'Car'
+dataset_name = 'CBF'
 
 def read_dataset_from_npy(path):
     """ Read dataset from .npy file

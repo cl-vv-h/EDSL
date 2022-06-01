@@ -44,7 +44,7 @@ if __name__ == "__main__":
     # Get the arguments
     parser = argsparser()
     args = parser.parse_args()
-    A = torch.tensor([1,2,3]).cuda()
+
     # Setup the gpu
     os.environ["CUDA_VISIBLE_DEVICES"] = args.gpu
     if torch.cuda.is_available():
