@@ -66,13 +66,15 @@ class Dataset:
 
         #print('Test set dims', self.X_test.shape)
 
-    def load_ucr_univariate_data(self, dataset_folder=None):
+    def load_ucr_univariate_data(self, dataset_name=None):
 
         # read the dataset name as the folder name
-        self.dataset_name = os.path.basename(os.path.normpath(dataset_folder))
+        self.dataset_folder = os.getcwd() + '\\..\\..\\datasets\\DATASETS\\' + dataset_name + '\\'
+        print(self.dataset_folder)
+        #self.dataset_name = os.path.basename(os.path.normpath(dataset_folder))
 
         # load the train and test data from files
-        file_prefix = os.path.join(dataset_folder, self.dataset_name)
+        file_prefix = os.path.join(self.dataset_folder, dataset_name)
         train_data = np.loadtxt(file_prefix + "_TRAIN", delimiter=",")
         test_data = np.loadtxt(file_prefix + "_TEST", delimiter=",")
 

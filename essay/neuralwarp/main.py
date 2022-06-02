@@ -18,7 +18,8 @@ config = hp.get_uniwarp_config(sys.argv)
 # create the optimizer
 dataset_folder = sys.argv[1]
 dataset = Dataset()
-dataset.load_multivariate(dataset_folder)
+#dataset.load_multivariate(dataset_folder)
+dataset.load_ucr_univariate_data('Car')
 
 config['uniwarp:length']=dataset.series_length
 config['dataset:num_channels']=dataset.num_channels

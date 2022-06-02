@@ -22,7 +22,8 @@ class Inference_Experiments:
 
         # load the dataset
         self.ds = Dataset()
-        self.ds.load_multivariate(dataset_path)
+        #self.ds.load_multivariate(dataset_path)
+        self.ds.load_ucr_univariate_data('Car')
 
         # set the length and number of channels
         self.config['uniwarp:length'] = self.ds.series_length
@@ -54,6 +55,7 @@ class Inference_Experiments:
         self.true_sim_batch = np.zeros((self.config['model:num_batch_pairs'],))
 
         print('Model has', self.model.num_model_parameters(), 'parameters')
+        print('dataset num: '+str(self.ds.num_test_instances))
 
     # infer the target of the test instances of a dataset
     # starting from the {start_pct} percentage of the instances for {chunk_pct} many instances
