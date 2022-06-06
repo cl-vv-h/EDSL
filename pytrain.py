@@ -8,13 +8,15 @@ import dis_com
 import truth_improve
 
 if __name__ == "__main__":
-    dataset = 'Computers'
-    train_data = np.loadtxt('trainData.csv', delimiter=',')
-    #train_data = train.data_build(data[:, :-1])
-    print(train_data.shape)
+    datasets = ['Car', 'Earthquakes', 'Computers', 'CBF', 'DistalPhalanxOutlineCorrect', 'ChlorineConcentration', 'Ham', 'Haptics', 'MedicalImages', 'uWaveGestureLibrary_X']
+    for dataset in datasets:
+    #dataset = 'Computers'
+        train_data = np.load('data/'+dataset+'.npy')
+        #train_data = train.data_build(data[:, :-1])
+        size = train_data.shape[1]
 
-    model = train.train(train_data[:,:-1], train_data[:,-1], nns.Ou_subNet)
+        model = train.train(train_data[:,:-1], train_data[:,-1], nns.Ou_subNet, size)
 
-    torch.save(model, 'models/' + dataset + '_linear4_10_20_5_sub_ous20.pkl')
+        torch.save(model, 'models/' + dataset + '_linear4_10_20_5_sub_ous20.pkl')
 
 
