@@ -30,7 +30,7 @@ def train(x, y, netType, hidden_size):
         loss = loss_F(prediction, y_)
         if pre-loss<0.005:
             break
-        #print(loss)
+        print(loss)
         pre = loss
         
         optimizer.zero_grad()

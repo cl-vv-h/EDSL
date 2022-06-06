@@ -80,6 +80,23 @@ def modefy_simple_sub_SBD(data, label, times, zscore=True):
 
     return res
 
+def distances(data, label, times, zscore=True):
+    [rowSize, columnSize] = data.shape
+
+    res = np.zeros((rowSize, rowSize))
+    for i in range(rowSize):
+        for j in range(rowSize):
+            res[i, j] = dis_com.SBD_distance_fft(data[i], data[j])[0]
+            if label[i] == label[j]:
+                res[i, j] /= times
+            else:
+                res[i, j] *= times
+    #print(res[:,-1])
+    if zscore:
+        res[:,-1] = stats.zscore(res[:,-1])
+
+    return res
+
 def modefy_simple_sub_gcn(data, label, size, zscore=True):
     [rowSize, columnSize] = data.shape
     edges1, edges2 = [], []
